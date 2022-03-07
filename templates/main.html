@@ -142,7 +142,7 @@
                     .then(data => byp_link = data["destination"])
                     .catch(error => console.log(error));
                     console.log(byp_link);
-                    const pstbn_rsp = await fetch(byp_link)
+                    const pstbn_rsp = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('byp_link)}`)
                     .then(res => res.text())
                     .then(data => pstbn_html = data)
                     .catch(error => console.log(error));
