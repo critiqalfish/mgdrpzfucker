@@ -156,6 +156,7 @@
                     }
                     else {
                         console.log("finished!");
+                        rextr_link = rextr_link.replace(/\\r\\n/, "");
                         console.log(rextr_link);
                         document.getElementById("area").value = rextr_link;
                         return rextr_link;
