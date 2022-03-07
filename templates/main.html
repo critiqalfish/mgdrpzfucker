@@ -156,7 +156,7 @@
                     }
                     else {
                         console.log("finished!");
-                        var crextr_link = rextr_link.replace(/\\r\\n/, "\n");
+                        var crextr_link = rextr_link.replace(/(?:\\[rn])+/g, "\n");
                         console.log(crextr_link);
                         document.getElementById("area").value = crextr_link;
                         return crextr_link;
