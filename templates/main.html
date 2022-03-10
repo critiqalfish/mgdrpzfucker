@@ -141,7 +141,7 @@
 
             async function want(link0) {
                 try {
-                    const link_rsp = await fetch(`https://bypass.bot.nu/bypass2?url=${link0}`)
+                    const link_rsp = await fetch(`https://vacant-curtly-composure.herokuapp.com/bypass2?url=${link0}`)
                     .then(res => res.json())
                     .then(data => byp_link = data["destination"])
                     .catch(error => console.log(error));
