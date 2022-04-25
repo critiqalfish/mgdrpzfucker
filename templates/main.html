@@ -151,7 +151,7 @@
                     .then(data => pstbn_html = data)
                     .catch(error => console.log(error));
                     console.log(pstbn_html);
-                    rextr_link = pstbn_html.match(/<textarea class=\\"textarea\\">(.*)<\/textarea>/s)[1];
+                    rextr_link = pstbn_html.match(/<title>(.*)<\/title>/s)[1];
                     console.log(rextr_link);
                     if (/STEP 2: .*/.test(rextr_link) == true) {
                         console.log("going again!");
