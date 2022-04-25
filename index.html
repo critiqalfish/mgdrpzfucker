@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>MGDRPZFUCKER</title>
+        <style>
+            html {
+                color-scheme: dark !important;
+            }
+
+            body{
+                background: linear-gradient(-45deg, #e4562b, #e73c7e, #b723d5);
+                background-size: 400% 400%;
+                animation: gradient 12s ease infinite;
+                color: white;
+                overflow: hidden;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            @keyframes gradient {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            #elements {
+                margin: 30vh auto 0vh;
+                text-align: center;
+            }
+
+            #title {
+                font-size: 6vmin;
+                margin-left: 0.5vmin;
+                margin-right: 0.5vmin;
+            }
+
+            #input {
+                min-width: 35vmin;
+                width: 25vw;
+                border-radius: 5px;
+                border: 0.3px solid gray;
+                transition: border-color 0.2s ease-in-out;
+            }
+
+            #input:hover {
+                border: 0.3px solid black;
+            }
+
+            #input:focus {
+                outline: none;
+                border: 0.3px solid black;
+            }
+
+            #clear {
+                border-radius: 5px;
+                border: 0.3px solid gray;
+                transition: border-color 0.2s ease-in-out;
+            }
+
+            #clear:hover {
+                border: 0.3px solid black;
+            }
+
+            #submit {
+                border-radius: 5px;
+                border: 0.3px solid gray;
+                transition: border-color 0.2s ease-in-out;
+            }
+
+            #submit:hover {
+                border: 0.3px solid black;
+            }
+
+            #area {
+                margin-top: 5vmin;
+                width: 60vmin;
+                height: 30vh;
+                resize: none;
+                overflow-y: scroll;
+                border-radius: 5px;
+                border: 0.2px solid gray;
+                transition: border-color 0.2s ease-in-out;
+            }
+            
+            #area:hover {
+                border: 0.3px solid black;
+            }
+
+            #area:focus {
+                outline: none;
+            }
+
+            #by {
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                margin-left: -70px;
+                font-size: medium;
+                font-weight: lighter;
+            }
+
+            #by a {
+                text-decoration: none;
+                color: #551a8b;
+            }
+
+            #by a:hover {
+                text-decoration: none;
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="elements">
+            <h1 id="title">MEGADROPZFUCKER</h1>
+            <input type="text" id="input" placeholder="link" value="">
+            <input type="button" id="clear" value="clear" onclick="var input = document.getElementById('input'); input.value = ''; var area = document.getElementById('area'); area.value = ''; input.focus();">
+            <input type="button" id="submit" value="submit" onclick="start()">
+            <br>
+            <textarea readonly id="area" value="" placeholder="no links here :("></textarea>
+            <h6 id="by"><a href="/">made by critiqalfish 🐠</a></h6>
+        </div>
+        <script>
+            async function start() {
+                ret = document.getElementById("input").value;
+                if (/https:\/\/.+\/\d+\/\d+/.test(ret) == true) {
+                    console.log("valid link!");
+                    want(ret);
+                }
+                else {
+                    console.log("invalid link!");
+                    alert("this link is invalid!");
+                }
+            }
+
+            async function want(link0) {
+                try {
+                    const link_rsp = await fetch(`https://bypass.bot.nu/bypass2?url=${link0}`)
+                    .then(res => res.json())
+                    .then(data => byp_link = data["destination"])
+                    .catch(error => console.log(error));
+                    console.log(byp_link);
+                    const pstbn_rsp = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(byp_link)}`)
+                    .then(res => res.text())
+                    .then(data => pstbn_html = data)
+                    .catch(error => console.log(error));
+                    console.log(pstbn_html);
+                    rextr_link = pstbn_html.match(/<title>(.*)<\/title>/s)[1];
+                    console.log(rextr_link);
+                    if (/STEP 2: .*/.test(rextr_link) == true) {
+                        console.log("going again!");
+                        extr_link = rextr_link.replace(/^(STEP 2: )/, "");
+                        want(extr_link);
+                    }
+                    else {
+                        console.log("finished!");
+                        var crextr_link = rextr_link.replace(/(?:\\[rn])+/g, "\n");
+                        console.log(crextr_link);
+                        document.getElementById("area").value = crextr_link;
+                        return crextr_link;
+                    }
+                }
+                catch (error) {
+                    console.error(error)
+                    alert(error)
+                }
+            }
+        </script>
+    </body>
+</html>
